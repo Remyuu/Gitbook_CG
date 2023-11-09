@@ -30,8 +30,3 @@
   * [实时渲染二：环境光照](gao-zhi-liang-shi-shi-xuan-ran/gao-zhi-liang-shi-shi-xuan-ran/shi-shi-xuan-ran-er-huan-jing-guang-zhao.md)
   * [HW1：项目流程概述 两趟渲染法，Bias缓解自遮挡问题, PCF, PCSS](gao-zhi-liang-shi-shi-xuan-ran/gao-zhi-liang-shi-shi-xuan-ran/hw1-xiang-mu-liu-cheng-gai-shu-liang-tang-xuan-ran-fa-bias-huan-jie-zi-zhe-dang-wen-ti-pcf-pcss.md)
   * [HW2：球谐函数实现](gao-zhi-liang-shi-shi-xuan-ran/gao-zhi-liang-shi-shi-xuan-ran/hw2-qiu-xie-han-shu-shi-xian.md)
-
-***
-
-* [Import](import/README.md)
-  * [計算機圖形學二：觀測變換 Viewing transformation](import/ji-suan-ji-tu-xing-xue-er-guan-ce-bian-huan-viewing-transformation.md)
