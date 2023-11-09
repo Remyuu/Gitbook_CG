@@ -37,72 +37,143 @@
 
 * 3D座標 = $(x,y,z,1)^T$
 * 3D向量 = $(x,y,z,0)^T$
-* 在齊次座標系中，$\left(\begin{array}{}x\y\z\w\end{array}\right)$代表三維空間中的一個點$\left(\begin{array}{}x/w\y/w\z/w\1\end{array}\right),w\ne0$.
-*   用4x4的矩陣表示三位仿射變換：
-
-    $$
-    \left(\begin{array}{l}
-    $$
-
-x^{\prime} \ y^{\prime} \ z^{\prime} \ 1 \end{array}\right)=\left(\begin{array}{lllc} a & b & c & t\_x \ d & e & f & t\_y \ g & h & i & t\_z \ 0 & 0 & 0 & 1 \end{array}\right) \cdot\left(\begin{array}{l} x \ y \ z \ 1 \end{array}\right) \tag{1}
+* 在齊次座標系中， $\left(\begin{array}{}x\y\z\w\end{array}\right)$代表三維空間中的一個點$\left(\begin{array}{}x/w\y/w\z/w\1\end{array}\right),w\ne0$ .
+* 用4x4的矩陣表示三位仿射變換：
 
 $$
-### 2.1.1 縮放與平移 Scale&Translation 基本與二維的旋轉類似。 - 縮放 Scale
+\left(\begin{array}{l} x^{\prime} \\ y^{\prime} \\ z^{\prime} \\ 1 \end{array}\right)=\left(\begin{array}{lllc} a & b & c & t_x \\ d & e & f & t_y \\ g & h & i & t_z \\ 0 & 0 & 0 & 1 \end{array}\right) \cdot\left(\begin{array}{l} x \\ y \\ z \\ 1 \end{array}\right) \tag{1}
 $$
 
-\mathbf{S}\left(s\_x, s\_y, s\_z\right)=\left(\begin{array}{cccc} s\_x & 0 & 0 & 0 \ 0 & s\_y & 0 & 0 \ 0 & 0 & s\_z & 0 \ 0 & 0 & 0 & 1 \end{array}\right)\ \tag{2}
+#### 2.1.1 縮放與平移 Scale\&Translation
+
+基本與二維的旋轉類似。
+
+* 縮放 Scale
 
 $$
-- 平移 Translation
+\mathbf{S}\left(s_x, s_y, s_z\right)=\left(\begin{array}{cccc} s_x & 0 & 0 & 0 \\ 0 & s_y & 0 & 0 \\ 0 & 0 & s_z & 0 \\ 0 & 0 & 0 & 1 \end{array}\right)\\ \tag{2}
 $$
 
-\mathbf{T}\left(t\_x, t\_y, t\_z\right)=\left(\begin{array}{cccc} 1 & 0 & 0 & t\_x \ 0 & 1 & 0 & t\_y \ 0 & 0 & 1 & t\_z \ 0 & 0 & 0 & 1 \end{array}\right) \tag{3}
+* 平移 Translation
 
 $$
-### 2.1.2 拉伸 Shear 可以僅僅進行二維的拉伸： 與2D變換一樣，任何3D變換矩陣都可以用SVD分解為旋轉、縮放和旋轉。任何對稱的3D矩陣都具有旋轉、縮放和逆旋轉的**特征值分解**。最後，三維旋轉可分解為三維拉伸（Shear）矩陣的乘積。
+\mathbf{T}\left(t_x, t_y, t_z\right)=\left(\begin{array}{cccc} 1 & 0 & 0 & t_x \\ 0 & 1 & 0 & t_y \\ 0 & 0 & 1 & t_z \\ 0 & 0 & 0 & 1 \end{array}\right) \tag{3}
 $$
 
-\operatorname{shear-x}\left(d\_y, d\_z\right)=\left\[\begin{array}{ccc} 1 & d\_y & d\_z \ 0 & 1 & 0 \ 0 & 0 & 1 \end{array}\right] \tag{4}
+#### 2.1.2 拉伸 Shear
+
+可以僅僅進行二維的拉伸：
+
+與2D變換一樣，任何3D變換矩陣都可以用SVD分解為旋轉、縮放和旋轉。任何對稱的3D矩陣都具有旋轉、縮放和逆旋轉的**特征值分解**。最後，三維旋轉可分解為三維拉伸（Shear）矩陣的乘積。
 
 $$
-### 2.1.3 旋轉 Rotate 比二維旋轉複雜得多，因為可能旋轉的軸更多。但是，我們如果只想繞著某一個軸旋轉，則只會改變另外兩個軸。 #### 2.1.3.1 繞一個軸旋轉 - 比方說，我們繞z軸旋轉，則只需要改變x和y軸，z軸保持不動（右側是基於齊次座標下的，下面同理）：
+\operatorname{shear-x}\left(d_y, d_z\right)=\left[\begin{array}{ccc} 1 & d_y & d_z \\ 0 & 1 & 0 \\ 0 & 0 & 1 \end{array}\right] \tag{4}
 $$
 
-\operatorname{rotate-\mathrm {z\}}(\phi)=\left\[\begin{array}{ccc} \cos \phi & -\sin \phi & 0 \ \sin \phi & \cos \phi & 0 \ 0 & 0 & 1 \end{array}\right] \tag{5}
+#### 2.1.3 旋轉 Rotate
 
-\mathbf{R}\_x(\alpha)=\left(\begin{array}{cccc} 1 & 0 & 0 & 0 \ 0 & \cos \alpha & -\sin \alpha & 0 \ 0 & \sin \alpha & \cos \alpha & 0 \ 0 & 0 & 0 & 1 \end{array}\right) \tag{6}
+比二維旋轉複雜得多，因為可能旋轉的軸更多。但是，我們如果只想繞著某一個軸旋轉，則只會改變另外兩個軸。
 
-$$
-- 類似的，繞x軸則只改變y和z：
-$$
+**2.1.3.1 繞一個軸旋轉**
 
-\operatorname{rotate-x}(\phi)=\left\[\begin{array}{ccc} 1 & 0 & 0 \ 0 & \cos \phi & -\sin \phi \ 0 & \sin \phi & \cos \phi \end{array}\right] \tag{7}
-
-\mathbf{R}\_z(\alpha)=\left(\begin{array}{cccc} \cos \alpha & -\sin \alpha & 0 & 0 \ \sin \alpha & \cos \alpha & 0 & 0 \ 0 & 0 & 1 & 0 \ 0 & 0 & 0 & 1 \end{array}\right) \tag{8}
+* 比方說，我們繞z軸旋轉，則只需要改變x和y軸，z軸保持不動（右側是基於齊次座標下的，下面同理）：
 
 $$
-- 繞y軸同理：
+\operatorname{rotate-\mathrm {z}}(\phi)=\left[\begin{array}{ccc} \cos \phi & -\sin \phi & 0 \\ \sin \phi & \cos \phi & 0 \\ 0 & 0 & 1 \end{array}\right] \tag{5}
 $$
 
-\operatorname{rotate-y}(\phi)=\left\[\begin{array}{ccc} \cos \phi & 0 & \sin \phi \ 0 & 1 & 0 \ -\sin \phi & 0 & \cos \phi \end{array}\right] \tag{9}
-
-\mathbf{R}\_y(\alpha)=\left(\begin{array}{cccc} \cos \alpha & 0 & \sin \alpha & 0 \ 0 & 1 & 0 & 0 \ -\sin \alpha & 0 & \cos \alpha & 0 \ 0 & 0 & 0 & 1 \end{array}\right) \ \tag{10}
-
 $$
-但是我們發現，y軸 **(9),(10)** 這裡的有一些**奇怪**。 - 思考：**為什麼繞著y軸旋轉時，方向是負的呢？** - 提示：x軸叉乘z軸，等於-y。 #### 2.1.3.2 復合旋轉 - 將 $\mathbf{R}_x(\alpha),\mathbf{R}_y(\alpha),\mathbf{R}_z(\alpha)$ 復合：
+\mathbf{R}_x(\alpha)=\left(\begin{array}{cccc} 1 & 0 & 0 & 0 \\ 0 & \cos \alpha & -\sin \alpha & 0 \\ 0 & \sin \alpha & \cos \alpha & 0 \\ 0 & 0 & 0 & 1 \end{array}\right) \tag{6}
 $$
 
-\mathbf{R}\_{xyz}(\alpha)=\mathbf{R}\_x(\alpha)\mathbf{R}\_y(\alpha)\mathbf{R}\_z(\alpha)
+* 類似的，繞x軸則只改變y和z：
 
 $$
-- 即歐拉角 Euler angles。 - **四元數**不在本章節討論範圍。 #### 2.1.3.3 羅德里格斯旋转公式 Rodrigues' rotation formula - 公式的作用：把任意的旋轉都寫成矩陣的形式。 - 繞$n$軸旋轉角度$\alpha$:
+\operatorname{rotate-x}(\phi)=\left[\begin{array}{ccc} 1 & 0 & 0 \\ 0 & \cos \phi & -\sin \phi \\ 0 & \sin \phi & \cos \phi \end{array}\right] \tag{7}
 $$
 
-\mathbf{R}(\mathbf{n}, \alpha)=\cos (\alpha) \mathbf{I}+(1-\cos (\alpha)) \mathbf{n} \mathbf{n}^T+\sin (\alpha) \underbrace{\left(\begin{array}{ccc} 0 & -n\_z & n\_y \ n\_z & 0 & -n\_x \ -n\_y & n\_x & 0 \end{array}\right)}\_{\mathbf{N\}} \tag{11}
+$$
+\mathbf{R}_z(\alpha)=\left(\begin{array}{cccc} \cos \alpha & -\sin \alpha & 0 & 0 \\ \sin \alpha & \cos \alpha & 0 & 0 \\ 0 & 0 & 1 & 0 \\ 0 & 0 & 0 & 1 \end{array}\right) \tag{8}
+$$
 
-$$$
-- 其中，$n$軸默認是過圓點$(0,0)$的且是單位向量；$N=n^*$，即$N$是$n$的矩陣形式（需要可以回顧上一章節 [1.2.7](https://remoooo.com/cg/1.html#ci_title16) 的內容）。 - 推導思路：假設是向量$a$繞著n軸旋轉至**$b$**，則將**$a$**分解為平行於n軸的分量（發現是不變的）加上垂直於n軸的分量。 - 詳細推導過程：https://www.bilibili.com/video/BV1Eu411r7GC/ ## 2.2 觀測變換 View Transformation 前面的內容，我們學習了如何使用矩陣變換在2D或3D空間中對物體進行旋轉、平移、縮放和裁切等一系列幾何變換（geo- metric transformations）操作。幾何變換的第二個用途就是用於觀測變換，也就是一種3D到2D的映射。下圖展示了將對象從原始座標轉換到屏幕空間的空間和變換序列： <img src="https://regz-1258735137.cos.ap-guangzhou.myqcloud.com/remo_t/auH6dk4fpKo9wUL.png" alt="image-20230409145104403" style="zoom:50%;" /> 如圖所示，觀測變換分為四個步驟： 1. 模型變換 **m**odeling tranformation 2. 攝像機/視圖變換 camera/**v**iew transformation 3. 投影變換 **p**rojection transformation 4. 視口變換 viewport transformation 提取上面三個步驟的首字母，**MVP**，也就很容易記住觀測變換的三大步驟了。 接下來，我們依次講解。 ### 2.2.1 模型變換 modeling tranformation - 調整場景中模型的位置、大小、旋轉至合適的形態 ### 2.2.2 攝像機/視圖變換 camera/**v**iew transformation - 我們把計算機圖形想像成一個攝影的過程，攝像機就是鏡頭的中心。 - 攝像機/視圖變換（下文簡稱攝像機變換）的目的是，**獲取所有在攝像機視線範圍的物體與攝像機之間的相對位置**。非常直觀的做法就是以攝像機為中心，換一句話說，就是把攝像機調整至世界座標的原點上。怎麼讓攝像機與世界座標原點重合呢？ #### 2.2.2.1 攝像機定義 - 攝像機的位置 $e$ - 注視的角度 $g$ - 攝像機上方向 $t$ <img src="https://regz-1258735137.cos.ap-guangzhou.myqcloud.com/remo_t/mhkljyRMaio7BQ9.png" alt="image-20230409151353699" style="zoom: 33%;" /> - 通過上面三個定義，即可建立以$e$為原點，基底為 $u,v,w$ 的攝像機座標系（如下圖所示）。 - $$ \begin{aligned} w & =-\frac{g}{\|g\|} \\ u & =\frac{t \times w}{\|t \times w\|} \\ v & =w \times u \end{aligned} \tag{12}
-$$$
+* 繞y軸同理：
+
+$$
+\operatorname{rotate-y}(\phi)=\left[\begin{array}{ccc} \cos \phi & 0 & \sin \phi \\ 0 & 1 & 0 \\ -\sin \phi & 0 & \cos \phi \end{array}\right] \tag{9}
+$$
+
+$$
+\mathbf{R}_y(\alpha)=\left(\begin{array}{cccc} \cos \alpha & 0 & \sin \alpha & 0 \\ 0 & 1 & 0 & 0 \\ -\sin \alpha & 0 & \cos \alpha & 0 \\ 0 & 0 & 0 & 1 \end{array}\right) \\ \tag{10}
+$$
+
+但是我們發現，y軸 **(9),(10)** 這裡的有一些**奇怪**。
+
+* 思考：**為什麼繞著y軸旋轉時，方向是負的呢？**
+* 提示：x軸叉乘z軸，等於-y。
+
+**2.1.3.2 復合旋轉**
+
+* 將 $\mathbf{R}\_x(\alpha),\mathbf{R}\_y(\alpha),\mathbf{R}\_z(\alpha)$ 復合：
+
+$$
+\mathbf{R}_{xyz}(\alpha)=\mathbf{R}_x(\alpha)\mathbf{R}_y(\alpha)\mathbf{R}_z(\alpha)
+$$
+
+* 即歐拉角 Euler angles。
+* **四元數**不在本章節討論範圍。
+
+**2.1.3.3 羅德里格斯旋转公式 Rodrigues' rotation formula**
+
+* 公式的作用：把任意的旋轉都寫成矩陣的形式。
+* 繞$n$軸旋轉角度$\alpha$:
+
+$$
+\mathbf{R}(\mathbf{n}, \alpha)=\cos (\alpha) \mathbf{I}+(1-\cos (\alpha)) \mathbf{n} \mathbf{n}^T+\sin (\alpha) \underbrace{\left(\begin{array}{ccc} 0 & -n_z & n_y \\ n_z & 0 & -n_x \\ -n_y & n_x & 0 \end{array}\right)}_{\mathbf{N}} \tag{11}
+$$
+
+* 其中，$n$軸默認是過圓點$(0,0)$的且是單位向量；$N=n^\*$，即$N$是$n$的矩陣形式（需要可以回顧上一章節 [1.2.7](https://remoooo.com/cg/1.html#ci\_title16) 的內容）。
+* 推導思路：假設是向量$a$繞著n軸旋轉至\*\*$b$**，則將**$a$\*\*分解為平行於n軸的分量（發現是不變的）加上垂直於n軸的分量。
+* 詳細推導過程：https://www.bilibili.com/video/BV1Eu411r7GC/
+
+### 2.2 觀測變換 View Transformation
+
+前面的內容，我們學習了如何使用矩陣變換在2D或3D空間中對物體進行旋轉、平移、縮放和裁切等一系列幾何變換（geo- metric transformations）操作。幾何變換的第二個用途就是用於觀測變換，也就是一種3D到2D的映射。下圖展示了將對象從原始座標轉換到屏幕空間的空間和變換序列：
+
+![image-20230409145104403](https://regz-1258735137.cos.ap-guangzhou.myqcloud.com/remo\_t/auH6dk4fpKo9wUL.png)
+
+如圖所示，觀測變換分為四個步驟：
+
+1. 模型變換 **m**odeling tranformation
+2. 攝像機/視圖變換 camera/**v**iew transformation
+3. 投影變換 **p**rojection transformation
+4. 視口變換 viewport transformation
+
+提取上面三個步驟的首字母，**MVP**，也就很容易記住觀測變換的三大步驟了。
+
+接下來，我們依次講解。
+
+#### 2.2.1 模型變換 modeling tranformation
+
+* 調整場景中模型的位置、大小、旋轉至合適的形態
+
+#### 2.2.2 攝像機/視圖變換 camera/**v**iew transformation
+
+* 我們把計算機圖形想像成一個攝影的過程，攝像機就是鏡頭的中心。
+* 攝像機/視圖變換（下文簡稱攝像機變換）的目的是，**獲取所有在攝像機視線範圍的物體與攝像機之間的相對位置**。非常直觀的做法就是以攝像機為中心，換一句話說，就是把攝像機調整至世界座標的原點上。怎麼讓攝像機與世界座標原點重合呢？
+
+**2.2.2.1 攝像機定義**
+
+* 攝像機的位置 $e$
+* 注視的角度 $g$
+* 攝像機上方向 $t$
+
+![image-20230409151353699](https://regz-1258735137.cos.ap-guangzhou.myqcloud.com/remo\_t/mhkljyRMaio7BQ9.png)
+
+* 通過上面三個定義，即可建立以$e$為原點，基底為 $u,v,w$ 的攝像機座標系（如下圖所示）。
+
+$$
+\begin{aligned} w & =-\frac{g}{\|g\|} \\ u & =\frac{t \times w}{\|t \times w\|} \\ v & =w \times u \end{aligned} \tag{12}
+$$
 
 ![image-20230409152654276](https://regz-1258735137.cos.ap-guangzhou.myqcloud.com/remo\_t/nh1NygOwr6xQjtH.png)
 
@@ -117,9 +188,9 @@ $$$
 1. 將相機移動至原點
 2. 通過旋轉矩陣將座標系重合
 
-第一步非常簡單，只需要將當前相機座標減去相機座標，即：$\left\[\begin{array}{cccc}1 & 0 & 0 & -x\_e \0 & 1 & 0 & -y\_e \0 & 0 & 1 & -z\_e \0 & 0 & 0 & 1\end{array}\right]$.
+第一步非常簡單，只需要將當前相機座標減去相機座標，即： $\left\[\begin{array}{cccc}1 & 0 & 0 & -x\_e \0 & 1 & 0 & -y\_e \0 & 0 & 1 & -z\_e \0 & 0 & 0 & 1\end{array}\right]$ .
 
-第二步，由於旋轉變換矩陣是一種正則基矩陣（正交矩陣 The orthogonal matrix），矩陣$M^T=M^{-1}$，所以將單位矩陣$I$旋轉至**當前**相機狀態的矩陣的逆矩陣則是：$\left\[\begin{array}{cccc}x\_u & y\_u & z\_u &0 \x\_v & y\_v & z\_v & 0 \x\_w & y\_w & z\_w & 0 \0 & 0 & 0 & 1\end{array}\right]$.
+第二步，由於旋轉變換矩陣是一種正則基矩陣（正交矩陣 The orthogonal matrix），矩陣 $M^T=M^{-1}$ ，所以將單位矩陣$I$旋轉至**當前**相機狀態的矩陣的逆矩陣則是： $\left\[\begin{array}{cccc}x\_u & y\_u & z\_u &0 \x\_v & y\_v & z\_v & 0 \x\_w & y\_w & z\_w & 0 \0 & 0 & 0 & 1\end{array}\right]$ .
 
 所以，定義相機變換矩陣 $M\_{cam}$ ：
 
@@ -156,7 +227,7 @@ https://stackoverflow.com/questions/36573283/from-perspective-picture-to-orthogr
 
 ![image-20230409160222459](https://regz-1258735137.cos.ap-guangzhou.myqcloud.com/remo\_t/gCU9hcOuTMv2nxp.png)
 
-* 則很容易推倒出將**長方體**變換到中心是$(0,0,0)$ 且所在區域是$\[-1,1]^3$的變換矩陣$M\_{orth}$：
+* 則很容易推倒出將**長方體**變換到中心是$(0,0,0)$ 且所在區域是 $\[-1,1]^3$ 的變換矩陣$M\_{orth}$：
 
 $$
 \mathbf{M}_{\text {orth }}=\left[\begin{array}{cccc} \frac{2}{r-l} & 0 & 0 & -\frac{r+l}{r-l} \\ 0 & \frac{2}{t-b} & 0 & -\frac{t+b}{t-b} \\ 0 & 0 & \frac{2}{n-f} & -\frac{n+f}{n-f} \\ 0 & 0 & 0 & 1 \end{array}\right] \tag{14}
@@ -178,8 +249,8 @@ $$
 ![image-20230409161624353](https://regz-1258735137.cos.ap-guangzhou.myqcloud.com/remo\_t/sflDA65h8d4S3xb.png)
 
 *
-  1. 將$(x,y,z)$投影到屏幕上，就變成了$(x',y',z')$
-  2. 原點是視點，$z=-n$表示投影平面，利用**相似三角形**得出投影後的$x,y$座標
+  1. 將 $(x,y,z)$ 投影到屏幕上，就變成了 $(x',y',z')$
+  2. 原點是視點， $z=-n$ 表示投影平面，利用**相似三角形**得出投影後的 $x,y$ 座標
 * 現在我們清楚的是，xOy平面的變換過程，但是z怎麼變化尚不清楚。
   1. $x'=\frac{n}{z}x$
   2. $y'=\frac{n}{z}y$
@@ -194,7 +265,7 @@ $$
 \left(\begin{array}{c}x \\y \\z \\1\end{array}\right)\stackrel{M_{persp\rightarrow ortho}^{(4 \times 4)}} \Rightarrow\left(\begin{array}{c}n x / z \\n y / z \\\text { unknown } \\1\end{array}\right) \stackrel{\text {mult. by z}}{==} \left(\begin{array}{c}n x \\n y \\\text { still unknown } \\z\end{array}\right) \tag{15}
 $$
 
-* 我們想要求處上面方程中的變換矩陣$M\_{\text {persp } \rightarrow \text { ortho \}}^{(4 \times 4)}$，則只需解**方程（16）**：
+* 我們想要求處上面方程中的變換矩陣 $M\_{\text {persp } \rightarrow \text { ortho \}}^{(4 \times 4)}$ ，則只需解**方程（16）**：
 
 $$
 M_{persp\rightarrow ortho}^{(4 \times 4)} \left(\begin{array}{c}x \\y \\z \\1\end{array}\right) = \left(\begin{array}{c}n x \\n y \\n\cdot \text {unknown} \\z\end{array}\right) \tag{16}
@@ -213,14 +284,14 @@ $$
 M_{persp\rightarrow ortho}^{(4 \times 4)} \left(\begin{array}{l}x \\y \\n \\1\end{array}\right) = \left(\begin{array}{l}n x \\n y \\n^{2} \\n\end{array}\right) \tag{18}
 $$
 
-* 由**方程（18）**，將變換矩陣$M$的第三行單獨拿出來，並且方程右邊的$n^2$肯定與$x,y$**無關**，所以得到**方程（19）**：
+* 由**方程（18）**，將變換矩陣$M$的第三行單獨拿出來，並且方程右邊的 $n^2$ 肯定與 $x,y$ **無關**，所以得到**方程（19）**：
 
 $$
 \left(\begin{array}{llll}0 & 0 & A & B\end{array}\right) \left(\begin{array}{l}x \\y \\n \\1\end{array}\right) =n^2 \Rightarrow An + B =n^2 \tag{19}
 $$
 
-* 且我們欲求的變換矩陣$M\_{persp \rightarrow ortho}$第三行的前兩個數字也確定了
-* 又因為遠平面$f$的中間點$(0,0,f)$經過變換依然是$(0,0,f)$，所以將$(0,0,f)$帶入**方程（16）**，得到**方程（20）**：
+* 且我們欲求的變換矩陣 $M\_{persp \rightarrow ortho}$ 第三行的前兩個數字也確定了
+* 又因為遠平面 $f$ 的中間點 $(0,0,f)$ 經過變換依然是 $(0,0,f)$ ，所以將 $(0,0,f)$ 帶入**方程（16）**，得到**方程（20）**：
 
 $$
 \left(\begin{array}{cccc} n & 0 & 0 & 0 \\ 0 & n & 0 & 0 \\ 0 & 0 & A & B \\ 0 & 0 & 1 & 0 \end{array}\right) \left(\begin{array}{l}0 \\0 \\f \\1\end{array}\right) = \left(\begin{array}{c}0 \\0 \\f^2 \\f\end{array}\right) \Rightarrow Af+b=f^2 \tag{20}
@@ -232,13 +303,13 @@ $$
 \left\{\begin{array}{l} A=n+f \\ B=-n f \end{array}\right. \tag{21}
 $$
 
-* 則求出“壓縮”變換矩陣$M\_{persp \rightarrow ortho}$：
+* 則求出“壓縮”變換矩陣 $M\_{persp \rightarrow ortho}$ ：
 
 $$
 M_{persp\rightarrow ortho}=\left(\begin{array}{cccc} n & 0 & 0 & 0 \\ 0 & n & 0 & 0 \\ 0 & 0 & n+f & -nf \\ 0 & 0 & 1 & 0 \end{array}\right) \tag{22}
 $$
 
-* 所以，透視投影$M\_{persp}=M\_{ortho}M\_{persp\rightarrow ortho}$
+* 所以，透視投影 $M\_{persp}=M\_{ortho}M\_{persp\rightarrow ortho}$
 * 計算最終結果：
 
 $$
@@ -247,7 +318,7 @@ $$
 
 **2.2.3.3 關於透視矩陣的練習題**
 
-* **問：在Frustum內部，任意一點經過了“壓縮”變換矩陣$M\_{persp \rightarrow ortho}$的變換後，會向哪個方向移動？**
+* **問：在Frustum內部，任意一點經過了“壓縮”變換矩陣 $M\_{persp \rightarrow ortho}$ 的變換後，會向哪個方向移動？**
 
 ![image-20230409161413677](https://regz-1258735137.cos.ap-guangzhou.myqcloud.com/remo\_t/8hQcfE5LyJx4j17-20230719181618709.png)
 
@@ -282,9 +353,9 @@ $$
 M_{\mathrm{viewport}}=\left[\begin{array}{cccc} \frac{n_x}{2} & 0 & 0 & \frac{n_x}{2} \\ 0 & \frac{n_y}{2} & 0 & \frac{n_y}{2} \\ 0 & 0 & 1 & 0 \\ 0 & 0 & 0 & 1 \end{array}\right] \tag{25}
 $$
 
-* $z$方向沒有任何改變
+* $z$ 方向沒有任何改變
 
-#### 2.2.5 觀測變換矩陣$M$
+#### 2.2.5 觀測變換矩陣 $M$
 
 $$
 M=M_{viewport}M_{persp}M_{cam}M_{model} \tag{26}

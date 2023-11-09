@@ -4,7 +4,7 @@
 
 * [现代计算机图形学 - 理论部分](README.md)
   * [計算機圖形學一：數學基礎 Transformation\&Homogeneous](cg/xian-dai-ji-suan-ji-tu-xing-xue-li-lun-bu-fen/ji-suan-ji-tu-xing-xue-yi-shu-xue-ji-chu-transformationhomogeneous.md)
-  * [計算機圖形學二：觀測變換 Viewing transformation](cg/xian-dai-ji-suan-ji-tu-xing-xue-li-lun-bu-fen/ji-suan-ji-tu-xing-xue-er-guan-ce-bian-huan-viewing-transformation.md)
+  * [計算機圖形學二：觀測變換 Viewing transformation](cg/readme/ji-suan-ji-tu-xing-xue-er-guan-ce-bian-huan-viewing-transformation.md)
   * [計算機圖形學三：光柵化渲染與深度緩衝](cg/xian-dai-ji-suan-ji-tu-xing-xue-li-lun-bu-fen/ji-suan-ji-tu-xing-xue-san-guang-shan-hua-xuan-ran-yu-shen-du-huan-chong.md)
   * [計算機圖形學四：抗鋸齒 Antialiasing](cg/xian-dai-ji-suan-ji-tu-xing-xue-li-lun-bu-fen/ji-suan-ji-tu-xing-xue-si-kang-ju-chi-antialiasing.md)
   * [计算机图形学五：着色（光照与基本着色模型）](cg/xian-dai-ji-suan-ji-tu-xing-xue-li-lun-bu-fen/ji-suan-ji-tu-xing-xue-wu-zhuo-se-guang-zhao-yu-ji-ben-zhuo-se-mo-xing.md)
@@ -30,3 +30,8 @@
   * [实时渲染二：环境光照](gao-zhi-liang-shi-shi-xuan-ran/gao-zhi-liang-shi-shi-xuan-ran/shi-shi-xuan-ran-er-huan-jing-guang-zhao.md)
   * [HW1：项目流程概述 两趟渲染法，Bias缓解自遮挡问题, PCF, PCSS](gao-zhi-liang-shi-shi-xuan-ran/gao-zhi-liang-shi-shi-xuan-ran/hw1-xiang-mu-liu-cheng-gai-shu-liang-tang-xuan-ran-fa-bias-huan-jie-zi-zhe-dang-wen-ti-pcf-pcss.md)
   * [HW2：球谐函数实现](gao-zhi-liang-shi-shi-xuan-ran/gao-zhi-liang-shi-shi-xuan-ran/hw2-qiu-xie-han-shu-shi-xian.md)
+
+***
+
+* [Import](import/README.md)
+  * [計算機圖形學二：觀測變換 Viewing transformation](import/ji-suan-ji-tu-xing-xue-er-guan-ce-bian-huan-viewing-transformation.md)
