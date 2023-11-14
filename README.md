@@ -10,7 +10,8 @@ description: via remoooo.com
 >
 > 本来应该有第七、八、十一和十二章的，分别是：**高级纹理映射**、**几何**、**相机透镜光场**与**动画模拟**，但是个人能力/时间有限，先挖个坑～
 
-Github：https://github.com/Remyuu/GAMES101-Homework
+Github     [https://github.com/Remyuu/GAMES101-Homework](https://github.com/Remyuu/GAMES101-Homework)\
+My Site    [https://remoooo.com](https://remoooo.com)
 
 ***
 
