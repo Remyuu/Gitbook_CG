@@ -18,11 +18,9 @@ My Site    [https://remoooo.com](https://remoooo.com)
 ### Special notice to..
 
 {% hint style="info" %}
-[Linqi Yan.](https://sites.cs.ucsb.edu/\~lingqi/)     -----      My Teacher      -----      Santa Barbara
-{% endhint %}
+[Linqi Yan.](https://sites.cs.ucsb.edu/\~lingqi/)      -----      My Teacher      -----      Santa Barbara
 
-{% hint style="info" %}
-[len3x3](https://github.com/len3X3).        -----      My Friend
+&#x20;[len3x3](https://github.com/len3X3).        -----          Friend
 {% endhint %}
 
 <div>
