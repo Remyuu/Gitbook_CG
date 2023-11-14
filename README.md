@@ -2,7 +2,7 @@
 description: via remoooo.com
 ---
 
-# 现代计算机图形学 - 理论部分
+# 101 - 现代计算机图形学
 
 欢迎来到现代计算机图形学入门系列～基本完结
 
@@ -11,6 +11,18 @@ description: via remoooo.com
 > 本来应该有第七、八、十一和十二章的，分别是：**高级纹理映射**、**几何**、**相机透镜光场**与**动画模拟**，但是个人能力/时间有限，先挖个坑～
 
 Github：https://github.com/Remyuu/GAMES101-Homework
+
+***
+
+### Special notice to..
+
+{% hint style="info" %}
+[Linqi Yan.](https://sites.cs.ucsb.edu/\~lingqi/)     -----      My Teacher      -----      Santa Barbara
+{% endhint %}
+
+{% hint style="info" %}
+[len3x3](https://github.com/len3X3).        -----      My Friend
+{% endhint %}
 
 <div>
 
