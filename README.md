@@ -20,7 +20,7 @@ My Site    [https://remoooo.com](https://remoooo.com)
 {% hint style="info" %}
 [Linqi Yan.](https://sites.cs.ucsb.edu/\~lingqi/)      -----      My Teacher      -----      Santa Barbara
 
-&#x20;[len3x3](https://github.com/len3X3).        -----          Friend
+&#x20;[len3x](https://github.com/len3X3)[3](https://github.com/len3X3)          -----          Friend
 {% endhint %}
 
 <div>
