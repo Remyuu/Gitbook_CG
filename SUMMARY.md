@@ -2,7 +2,7 @@
 
 ## 🐣 101 - 计算机图形学入门 <a href="#cg" id="cg"></a>
 
-* [101 - 现代计算机图形学](README.md)
+* [现代计算机图形学](README.md)
   * [計算機圖形學一：數學基礎 Transformation\&Homogeneous](cg/xian-dai-ji-suan-ji-tu-xing-xue-li-lun-bu-fen/ji-suan-ji-tu-xing-xue-yi-shu-xue-ji-chu-transformationhomogeneous.md)
   * [計算機圖形學二：觀測變換 Viewing transformation](cg/readme/ji-suan-ji-tu-xing-xue-er-guan-ce-bian-huan-viewing-transformation.md)
   * [計算機圖形學三：光柵化渲染與深度緩衝](cg/xian-dai-ji-suan-ji-tu-xing-xue-li-lun-bu-fen/ji-suan-ji-tu-xing-xue-san-guang-shan-hua-xuan-ran-yu-shen-du-huan-chong.md)
