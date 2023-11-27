@@ -29,6 +29,7 @@
   * [实时渲染二：环境光照](202-gao-zhi-liang-shi-shi-xuan-ran/gao-zhi-liang-shi-shi-xuan-ran/shi-shi-xuan-ran-er-huan-jing-guang-zhao.md)
   * [HW1：项目流程概述 两趟渲染法，Bias缓解自遮挡问题, PCF, PCSS](202-gao-zhi-liang-shi-shi-xuan-ran/gao-zhi-liang-shi-shi-xuan-ran/hw1-xiang-mu-liu-cheng-gai-shu-liang-tang-xuan-ran-fa-bias-huan-jie-zi-zhe-dang-wen-ti-pcf-pcss.md)
   * [HW2：球谐函数实现](202-gao-zhi-liang-shi-shi-xuan-ran/gao-zhi-liang-shi-shi-xuan-ran/hw2-qiu-xie-han-shu-shi-xian.md)
+  * [HW3：屏幕空间光线追踪实现](202-gao-zhi-liang-shi-shi-xuan-ran/gao-zhi-liang-shi-shi-xuan-ran/hw3-ping-mu-kong-jian-guang-xian-zhui-zong-shi-xian.md)
 
 ## ⚙ 104 - 游戏引擎导论
 
